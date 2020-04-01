@@ -27,8 +27,7 @@ class Utils(object):
         f.write('\n'+('-'*10)+' %s : %s '%(PROGRAM_NAME, 
                    datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+('-'*10)+'\n')
     
-    @classmethod
-    def log(cls, info, level=0):
+    def log(info, level=0):
         if level == 0:
             level = 'Info'
         elif level == 1:
@@ -43,15 +42,13 @@ class Utils(object):
     def getSyllablesNum(cls, word):
         return [len(list(y for y in x if y[-1].isdigit())) for x in cls.CMUDICT[word]][0]
     
-    @classmethod
-    def getBlockNums(cls, text):
+    def getBlockNums(text):
         num = 0
         for character in text:
             if character == ' ': num += 1
         return num
     
-    @classmethod
-    def getDocumentOutput(cls, sentiment_paragraphs):
+    def getDocumentOutput(sentiment_paragraphs):
         positive_counter = {'words_num':0, 'sentences_num':0, 'syllables_num':0}
         negative_counter = {'words_num':0, 'sentences_num':0, 'syllables_num':0}
         for sentiment in SENTIMENT_LIST:
@@ -72,8 +69,7 @@ class Utils(object):
                 negative_counter['syllables_num'] += sentiment_paragraphs[paragraph_index]['syllables_num']
         return positive_counter, negative_counter
     
-    @classmethod
-    def getSentimentWords(cls):
+    def getSentimentWords():
         sentiment_words = {}
         for sentiment in os.listdir(SENTIMENT_WORDS_DIR):
             if sentiment in SENTIMENT_BAN_LIST:
@@ -85,8 +81,7 @@ class Utils(object):
                     sentiment_words[sentiment].remove('')
         return sentiment_words
     
-    @classmethod
-    def getParagraphSentiment(cls, sentiment_paragraphs):
+    def getParagraphSentiment(sentiment_paragraphs):
         for paragraph_index in sentiment_paragraphs.keys():
             positive_num = negative_num = 0
             for sentiment in SENTIMENT_POSITIVE_LIST:
@@ -95,8 +90,8 @@ class Utils(object):
                 negative_num += sentiment_paragraphs[paragraph_index][sentiment]
             sentiment_paragraphs[paragraph_index]['positive_num'] = positive_num
             sentiment_paragraphs[paragraph_index]['negative_num'] = negative_num
-            
-    @classmethod
+    
+    @classmethod        
     def getParagraphInfo(cls, sentiment_paragraphs, paragraphs):
         for paragraph_index in sentiment_paragraphs.keys():
             syllables_num = sentences_num = words_num = 0
