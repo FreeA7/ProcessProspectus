@@ -1,5 +1,5 @@
 # Process prospectuses
-This program is used to extract the folling information from prospectuses which can be downloaded from [US. SECURITIES AND EXCHANGE COMMISSION](https://www.sec.gov/)
+This program is used to extract the following information from prospectuses which can be downloaded from [US. SECURITIES AND EXCHANGE COMMISSION](https://www.sec.gov/)
 - The number of different sentiment words.
 - The number of words.
 - The number of sentences.
